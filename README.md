@@ -1,22 +1,45 @@
-# Watch
+# Welcome to @xkeshav/watch
 
-A developer friendly utility and stylish console to watch data/variable runtime to debug React Application fast.
+A developer friendly utility to watch data/variable runtime which help to debug React code fast( in console or within page)
+
+this package comes with three methods
+
+1. `<Watch>` component
+2. `watchThis` method
+3. `<WatchJson>` component
 
 ## Install
 
-> npm i @xkeshav/watch
+Install `@xkeshav/watch` via yarn or npm
+
+```sh
+> npm install @xkeshav/watch
+```
+
+```sh
+> yarn install @xkeshav/watch
+```
 
 ## Usage
 
-### <Watch>
+### `<Watch>` component
 
-use `<Watch>` in JSX/TSX code to see data in console
+use `<Watch>` within JSX/TSX code to see the data in the console, and pass data as children
 
-it accepts 2 optional props name as `from` and `kind`
+### Watch Syntax
 
-possible value of `kind` is `log | table | dir | warn | error | info`
+```tsx
+<Watch>{whateverDataToDebug}</Watch>
+```
 
-#### Example
+### props (optional)
+
+| name   | type     | default | description                                                         |
+| ------ | -------- | ------- | ------------------------------------------------------------------- |
+| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
+| `from` | `string` | **👀**  | additional information to display in console                        |
+
+### Example
 
 ```tsx
 import { Watch } from "@xkeshav/watch";
@@ -24,17 +47,18 @@ import { useState } from "react";
 
 export const Demo = () => {
   const [date, setDate] = useState<Date>(new Date());
-
   const setNextHour = () => {
     const nextHour = date.getHours() + 1;
-    setDate(new Date(new Date().setHours(nextHour)));
+    setDate(new Date(date.setHours(nextHour)));
   };
 
   return (
     <>
-      <h1>Demo</h1>
+      <h1>Watch Demo (see in console)</h1>
       <button onClick={setNextHour}>Next</button>
-      <p>See date in console:</p> <Watch>{{ date }}</Watch>
+      <p>Watch without any props</p> <Watch>{{ date }}</Watch>
+      <hr />
+      <p>Watch with props</p>
       <Watch from="Demo Component" kind="dir">
         {{ date }}
       </Watch>
@@ -43,35 +67,69 @@ export const Demo = () => {
 };
 ```
 
-#### Output
+_Note: using object shorthand property within `Watch` for better readability._
+
+### Output
 
 ![Watch Demo](https://github.com/xkeshav/watch/blob/main/assets/images/Watch_demo.png)
 
-### watchThis()
+---
 
-use `watchThis()` method outside of jsx and it print in console.
+## `watchThis()` method
 
-first parameter will be what variable we need to debug
-second parameter will be kind (optional), possible value is same as `kind`
-third parameter will be additional info
+use `watchThis()` method can be used in react component and it display data in the console.
+
+### watchThis Syntax
 
 ```js
 watchThis(whatToDebug);
-watchThis(variable);
 watchThis(whatToDebug, "info", "from filename");
-watchThis(whatToDebug, undefined, filename);
+watchThis(whatToDebug, undefined, "additional info");
 ```
 
-### WatchJson
+### Parameters (optional)
 
-This is another method to see output within the page in a panel.
+| name   | type     | default | description                                                         |
+| ------ | -------- | ------- | ------------------------------------------------------------------- |
+| `what` | `any`    | ''      | pass data which need to display in console                          |
+| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
+| `from` | `string` | **👇**  | additional information; this become title on console group          |
 
-use `<WatchJson>` in following format. and we can write as many as props
+### Example
 
-we can pass complete object and it will pretty print on the page
+```tsx
+import { watchThis } from "@xkeshav/watch";
 
-it have show and hide panel using show/hide button
+export const Demo = () => {
+  const today = new Date();
 
+  watchThis({ today });
+  watchThis({ today }, "log", "Demo");
+  return <h1>watchThis Demo (see in console)</h1>;
+};
+```
+
+### Output
+
+![watchThis Demo](https://github.com/xkeshav/watch/blob/main/assets/images/watchThis_demo.png)
+
+## `<WatchJson />` component
+
+This is another method to see output within the page, appears in a panel form, this panel have show/hide button.
+
+### WatchJson Syntax
+
+```tsx
+<WatchJson data={whatever} />
+```
+
+### props
+
+and we can pass as many as props ( whether its object string or number)
+
+`what` is special prop and optional, which is used at title of the panel.
+
+### Example
 
 ```tsx
 const WatchDemo = () => {
@@ -80,11 +138,9 @@ const WatchDemo = () => {
 };
 ```
 
-#### Output as
+### Output
 
 ![WatchJson Demo](https://github.com/xkeshav/watch/blob/main/assets/images/watchJson_demo.png)
-
-`what` is special prop which is used at title of the panel.
 
 ## License
 
