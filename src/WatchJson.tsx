@@ -1,44 +1,11 @@
-import React, { Fragment, useReducer, useState } from 'react';
+import { Fragment, useReducer, useState } from 'react';
 
-/**
- * A simple utility to create stylish console logs in the browser within collapsed groups.
- * It can be used as a component or a method.
- *
- * In JSX, it is used as a match component.
- * In React components, outside JSX, we can write it as 'watchThis' method.
- *
- * @param {any} what - The value/variable/data you need to console. If it's an object, send it as an object.
- * @param {string} kind - Optional. Property of console. Default is 'log'. Other values for kind could be 'warn', 'error', etc.
- * @param {string} from - Optional. Additional details, such as filename or date.
- */
-
-const logStyle = `
-  background-color: crimson;
-  color: whitesmoke;
-  font-size: larger;
-  font-style: italic;
-  padding: 0.25rem;
-`
-
-export const watchThis = (what: any, from = '👇', kind = 'log') => {
-    console.groupCollapsed(`%c === [${from}] ===`, logStyle);
-    (console as any)[kind](what);
-    console.groupEnd();
+export type WatchJsonProps = {
+  [key:string]: any;
+  what?: string;
 };
 
-type WatchProps = {
-  children: React.ReactNode
-  from?: string;
-  kind?: string;
-};
-
-export const Watch: React.FC<WatchProps> = ({ children, from = '👀', kind = 'log' }) => {
-  watchThis(children, from, kind);
-  return <>{}</>;
-};
-
-
-const watchStyle = {
+const watchJsonStyle = {
   container: ({hover}: {hover: boolean}) => ({
     padding: '0.5rem',
     border: `2px ${hover ? 'solid' : 'dashed'} mediumvioletred`,
@@ -97,7 +64,6 @@ const watchStyle = {
     }
 };
 
-
 /**
 * This is another method to see output within the page instead of in the console,
 * use <WatchJson> in following format
@@ -106,39 +72,34 @@ const watchStyle = {
 * @prop String what'; optional, if you want to set heading of the debug block.
 */
 
-export type WatchJsonProps = {
-  [key:string]: any;
-  what?: string;
-};
-
 export const WatchJson: React.FC<WatchJsonProps> = ({ what = '', ...rest }) => {
   const [isHidden, toggleHidden] = useReducer((state: boolean) => !state, false);
   const [hover, setHover] = useState(false);
 
   return (
     <div 
-      style={watchStyle.container({ hover })} 
+      style={watchJsonStyle.container({ hover })} 
       onPointerOver={() => setHover(true)} 
       onPointerOut={() => setHover(false)}
       >
       { Object.keys(rest).length > 0
         ? (
           <Fragment>
-            <div style={watchStyle.action}>
-              <p style={watchStyle.para}>{what}</p>
+            <div style={watchJsonStyle.action}>
+              <p style={watchJsonStyle.para}>{what}</p>
               <button
-                style={watchStyle.button}
+                style={watchJsonStyle.button}
                 onClick={toggleHidden}
                 title={`click to ${isHidden ? 'show' : 'hide'}`}
               >
               {isHidden ? 'Show' : 'Hide'}
               </button>
             </div>
-            <div style={isHidden ? watchStyle.hide : watchStyle.show}>
+            <div style={isHidden ? watchJsonStyle.hide : watchJsonStyle.show}>
               {Object.entries(rest).map(([wk, wv], i) => (
-                <details key={i} style={watchStyle.detail}>
-                  <summary style={watchStyle.summary}>{wk}</summary>
-                  <pre style={watchStyle.pre}>{JSON.stringify(wv, null, 4)}</pre>
+                <details key={i} style={watchJsonStyle.detail}>
+                  <summary style={watchJsonStyle.summary}>{wk}</summary>
+                  <pre style={watchJsonStyle.pre}>{JSON.stringify(wv, null, 4)}</pre>
                 </details>
               ))}
             </div>
@@ -149,6 +110,3 @@ export const WatchJson: React.FC<WatchJsonProps> = ({ what = '', ...rest }) => {
     </div>
   );
 };
-
-
-

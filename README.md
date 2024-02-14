@@ -71,7 +71,7 @@ _Note: using object shorthand property within `Watch` for better readability._
 
 ### Output
 
-![Watch Demo](assets/images/Watch_demo.png)
+![Watch Demo](assets/images/watch_demo.png)
 
 ---
 
