@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { Fragment, PropsWithChildren } from 'react';
 /**
  * A simple utility to create stylish console logs in the browser within collapsed groups.
  * It can be used as a component or a method.
@@ -34,5 +34,5 @@ export const watchThis = (what: any, from = '👇', kind = 'log') => {
 
 export const Watch: React.FC<WatchPropsExtended> = ({ children, from = '👀', kind = 'log' }) => {
   watchThis(children, from, kind);
-  return <>{}</>;
+  return <Fragment>{}</Fragment>;
 };
