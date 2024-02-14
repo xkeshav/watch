@@ -111,7 +111,7 @@ export const Demo = () => {
 
 ### Output
 
-![watchThis Demo](https://github.com/xkeshav/watch/blob/main/assets/images/watchThis_demo.png)
+![watchThis Demo](https://github.com/xkeshav/watch/blob/main/assets/images/watchThis_Demo.png)
 
 ## `<WatchJson />` component
 
