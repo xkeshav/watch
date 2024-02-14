@@ -34,10 +34,10 @@ use `<Watch>` within JSX/TSX code to see the data in the console, and pass data 
 
 ### props (optional)
 
-| name   | type     | default | description                                                         |
-| ------ | -------- | ------- | ------------------------------------------------------------------- |
-| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
-| `from` | `string` | **👀**  | additional information to display in console                        |
+| name   | type     | default | description                                                        |
+| ------ | -------- | ------- | ------------------------------------------------------------------ |
+| `from` | `string` | **👀**  | additional information to display in console                       |
+| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` `error` `info` `trace` |
 
 ### Example
 
@@ -83,17 +83,17 @@ use `watchThis()` method can be used in react component and it display data in t
 
 ```js
 watchThis(whatToDebug);
-watchThis(whatToDebug, "info", "from filename");
-watchThis(whatToDebug, undefined, "additional info");
+watchThis(whatToDebug, "from filename", "info);
+watchThis(whatToDebug, "additional details");
 ```
 
 ### Parameters (optional)
 
 | name   | type     | default | description                                                         |
 | ------ | -------- | ------- | ------------------------------------------------------------------- |
-| `what` | `any`    | ''      | pass data which need to display in console                          |
-| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
+| `what` | `string` | ''      | pass data which need to display in console                          |
 | `from` | `string` | **👇**  | additional information; this become title on console group          |
+| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
 
 ### Example
 
@@ -104,7 +104,7 @@ export const Demo = () => {
   const today = new Date();
 
   watchThis({ today });
-  watchThis({ today }, "log", "Demo");
+  watchThis({ today }, "Demo", "info");
   return <h1>watchThis Demo (see in console)</h1>;
 };
 ```
@@ -120,14 +120,16 @@ This is another method to see output within the page, appears in a panel form, t
 ### WatchJson Syntax
 
 ```tsx
-<WatchJson data={whatever} />
+<WatchJson data={whatever} what={"some Title"} />
 ```
 
-### props
+### props (optional)
 
-and we can pass as many as props ( whether its object string or number)
+| name   | type     | default | description                              |
+| ------ | -------- | ------- | ---------------------------------------- |
+| `what` | `string` | ''      | this will be displayed as title of panel |
 
-`what` is special prop and optional, which is used at title of the panel.
+Note: we can pass as many as props to `WatchJson` (of any type )
 
 ### Example
 

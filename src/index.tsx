@@ -20,20 +20,20 @@ const logStyle = `
   padding: 0.25rem;
 `
 
-export const watchThis = (what:any, kind = 'log', from = '👇') => {
+export const watchThis = (what: any, from = '👇', kind = 'log') => {
     console.groupCollapsed(`%c === [${from}] ===`, logStyle);
     (console as any)[kind](what);
     console.groupEnd();
 };
 
-type WatchParams = {
-  children: any;
-  kind?: string;
+type WatchProps = {
+  children: React.ReactNode
   from?: string;
+  kind?: string;
 };
 
-export const Watch: React.FC<WatchParams> = ({ children, kind = 'log', from = '👀' }) => {
-  watchThis(children, kind, from);
+export const Watch: React.FC<WatchProps> = ({ children, from = '👀', kind = 'log' }) => {
+  watchThis(children, from, kind);
   return <>{}</>;
 };
 
@@ -102,16 +102,16 @@ const watchStyle = {
 * This is another method to see output within the page instead of in the console,
 * use <WatchJson> in following format
 * @example
-* <WatchJson what='myself' data={data} name={'Keshav'} date={new Date()}/>
+* <WatchJson what='title' data={data} name={'Keshav'} date={new Date()}/>
 * @prop String what'; optional, if you want to set heading of the debug block.
 */
 
 export type WatchJsonProps = {
-  [ket:string]: any;
+  [key:string]: any;
   what?: string;
 };
 
-export const WatchJson: React.FC<WatchJsonProps> = ({ what = '', ...rest }: WatchJsonProps) => {
+export const WatchJson: React.FC<WatchJsonProps> = ({ what = '', ...rest }) => {
   const [isHidden, toggleHidden] = useReducer((state: boolean) => !state, false);
   const [hover, setHover] = useState(false);
 
