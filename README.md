@@ -71,7 +71,7 @@ _Note: using object shorthand property within `Watch` for better readability._
 
 ### Output
 
-![Watch Demo](https://github.com/xkeshav/watch/blob/main/assets/images/Watch_demo.png)
+![Watch Demo](assets/images/Watch_demo.png)
 
 ---
 
@@ -111,7 +111,7 @@ export const Demo = () => {
 
 ### Output
 
-![watchThis Demo](https://github.com/xkeshav/watch/blob/main/assets/images/watchThis_Demo.png)
+![watchThis Demo](assets/images/watchThis_demo.png)
 
 ## `<WatchJson />` component
 
@@ -140,7 +140,7 @@ const WatchDemo = () => {
 
 ### Output
 
-![WatchJson Demo](https://github.com/xkeshav/watch/blob/main/assets/images/watchJson_demo.png)
+![WatchJson Demo](assets/images/watchJson_demo.png)
 
 ## License
 
