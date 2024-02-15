@@ -2,7 +2,7 @@
 
 A developer friendly utility to watch data/variable runtime which help to debug React code fast( in console or within page)
 
-this package comes with three methods
+This package comes with three variation to debug any data
 
 1. `<Watch>` component
 2. `watchThis` method
@@ -53,7 +53,7 @@ export const Demo = () => {
   };
 
   return (
-    <>
+    <div>
       <h1>Watch Demo (see in console)</h1>
       <button onClick={setNextHour}>Next</button>
       <p>Watch without any props</p> <Watch>{{ date }}</Watch>
@@ -62,7 +62,7 @@ export const Demo = () => {
       <Watch from="Demo Component" kind="dir">
         {{ date }}
       </Watch>
-    </>
+    </div>
   );
 };
 ```
@@ -102,10 +102,14 @@ import { watchThis } from "@xkeshav/watch";
 
 export const Demo = () => {
   const today = new Date();
-
+  const system = { name: "Windows", version: "11", release: "2023" };
   watchThis({ today });
-  watchThis({ today }, "Demo", "info");
-  return <h1>watchThis Demo (see in console)</h1>;
+  watchThis({ system }, "Label", "info");
+  return (
+    <div>
+      <h1>watchThis Demo (see in console)</h1>
+    </div>
+  );
 };
 ```
 
@@ -115,6 +119,7 @@ export const Demo = () => {
 
 ## `<WatchJson />` component
 
+p
 This is another method to see output within the page, appears in a panel form, this panel have show/hide button.
 
 ### WatchJson Syntax
