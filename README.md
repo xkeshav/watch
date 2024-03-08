@@ -1,11 +1,11 @@
-# Welcome to @xkeshav/watch
+# @xkeshav/watch
 
 A developer friendly utility to watch data/variable runtime which help to debug React code fast( in console or within page)
 
-This package comes with three variation to debug any data
+This npm package comes with three variation to debug data within react application
 
 1. `<Watch>` component
-2. `watchThis` method
+2. `watchThis()` method
 3. `<WatchJson>` component
 
 ## Install
@@ -16,13 +16,15 @@ Install `@xkeshav/watch` via yarn or npm
 > npm install @xkeshav/watch
 ```
 
+or
+
 ```sh
 > yarn install @xkeshav/watch
 ```
 
-## Usage
+## Variations and usage
 
-### `<Watch>` component
+## `<Watch>` component
 
 use `<Watch>` within JSX/TSX code to see the data in the console, and pass data as children
 
@@ -42,8 +44,8 @@ use `<Watch>` within JSX/TSX code to see the data in the console, and pass data 
 ### Example
 
 ```tsx
-import { Watch } from "@xkeshav/watch";
-import { useState } from "react";
+import { useState } from 'react';
+import { Watch } from '@xkeshav/watch';
 
 export const Demo = () => {
   const [date, setDate] = useState<Date>(new Date());
@@ -98,13 +100,13 @@ watchThis(whatToDebug, "additional details");
 ### Example
 
 ```tsx
-import { watchThis } from "@xkeshav/watch";
+import { watchThis } from '@xkeshav/watch';
 
 export const Demo = () => {
   const today = new Date();
-  const system = { name: "Windows", version: "11", release: "2023" };
+  const system = { name: 'Windows', version: '11', release: '2023' };
   watchThis({ today });
-  watchThis({ system }, "Label", "info");
+  watchThis({ system }, 'Label', 'info');
   return (
     <div>
       <h1>watchThis Demo (see in console)</h1>
@@ -119,13 +121,12 @@ export const Demo = () => {
 
 ## `<WatchJson />` component
 
-p
-This is another method to see output within the page, appears in a panel form, this panel have show/hide button.
+This is another method to see output within the page, appears in a panel with show/hide button.
 
 ### WatchJson Syntax
 
 ```tsx
-<WatchJson data={whatever} what={"some Title"} />
+<WatchJson data={whatever} what={'some Title'} />
 ```
 
 ### props (optional)
