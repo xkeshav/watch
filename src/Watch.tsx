@@ -1,4 +1,4 @@
-import { Fragment, PropsWithChildren } from 'react';
+import React, { Fragment, PropsWithChildren } from 'react';
 /**
  * A simple utility to create stylish console logs in the browser within collapsed groups.
  * It can be used as a component or a method.

@@ -1,13 +1,13 @@
 {
   "name": "@xkeshav/watch",
-  "version": "1.3.0",
-  "description": "A debug utility to see data within page or in console for react component",
+  "version": "1.4.0",
+  "description": "A debug utility to see data within page or in the console for React",
   "main": "./dist/index.js",
   "repository": {
     "type": "github",
     "url": "https://github.com/xkeshav/watch.git"
   },
-  "homepage": "https://github.com/xkeshav/watch.git",
+  "homepage": "https://www.npmjs.com/package/@xkeshav/watch",
   "files": [
     "dist"
   ],
@@ -30,6 +30,7 @@
   },
   "keywords": [
     "watch",
+    "WatchJson",
     "react",
     "typescript",
     "console",

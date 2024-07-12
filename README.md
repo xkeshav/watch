@@ -2,13 +2,13 @@
 
 A developer friendly utility to watch data/variable runtime which help to debug React code fast( in console or within page)
 
-This npm package comes with three variation to debug data within react application
+This npm package comes with three variation to debug data within react application on runtime and async data
 
 1. `<Watch>` component
 2. `watchThis()` method
 3. `<WatchJson>` component
 
-## Install
+## Installation
 
 Install `@xkeshav/watch` via yarn or npm
 
@@ -129,7 +129,7 @@ This is another method to see output within the page, appears in a panel with sh
 <WatchJson data={whatever} what={'some Title'} />
 ```
 
-### props (optional)
+### Props (optional)
 
 | name   | type     | default | description                              |
 | ------ | -------- | ------- | ---------------------------------------- |
@@ -154,6 +154,7 @@ const WatchDemo = () => {
 
 [**MIT**](https://github.com/xkeshav/watch/blob/main/LICENSE)
 
-## Author
+## References
 
-- [_@xkeshav_](https://twitter.com/xkeshav)
+- [_author_](https://twitter.com/xkeshav)
+- [npm home](https://www.npmjs.com/package/@xkeshav/watch)
