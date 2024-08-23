@@ -1,5 +1,9 @@
 # @xkeshav/watch
 
+![npm version][npm version]
+![License][license]
+![total download][download]
+
 A developer friendly utility to watch data/variable runtime which help to debug React code fast( in console or within page)
 
 This npm package comes with three variation to debug data within react application on runtime and async data
@@ -92,10 +96,10 @@ watchThis(whatToDebug, "additional details");
 ### Parameters (optional)
 
 | name   | type     | default | description                                                         |
-| ------ | -------- | ------- | ------------------------------------------------------------------- |
-| `what` | `string` | ''      | pass data which need to display in console                          |
+| ------ | -------- | :-----: | ------------------------------------------------------------------- |
+| `what` | `string` |   ''    | pass data which need to display in console                          |
 | `from` | `string` | **👇**  | additional information; this become title on console group          |
-| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
+| `kind` | `string` |  "log"  | console method such as `table` `dir` `warn` ,`error` `info` `trace` |
 
 ### Example
 
@@ -152,9 +156,14 @@ const WatchDemo = () => {
 
 ## License
 
-[**MIT**](https://github.com/xkeshav/watch/blob/main/LICENSE)
+[**ISC**](https://github.com/xkeshav/watch/blob/main/LICENSE)
 
 ## References
 
 - [_author_](https://twitter.com/xkeshav)
 - [npm home](https://www.npmjs.com/package/@xkeshav/watch)
+-
+
+[license]: https://badgen.net/npm/license/@xkeshav/watch
+[npm version]: https://badgen.net/npm/v/@xkeshav/watch
+[download]: https://badgen.net/npm/dt/@xkeshav/watch

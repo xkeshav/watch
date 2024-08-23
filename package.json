@@ -1,6 +1,6 @@
 {
   "name": "@xkeshav/watch",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A debug utility to see data within page or in the console for React",
   "main": "./dist/index.js",
   "repository": {
@@ -38,7 +38,7 @@
     "debugger"
   ],
   "author": "Keshav Mohta<xkeshav@gmail.com>",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
