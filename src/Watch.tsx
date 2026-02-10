@@ -11,28 +11,43 @@ import React, { Fragment, PropsWithChildren } from 'react';
  * @param {string} from - Optional. Additional details, such as filename or date.
  */
 
-export type WatchProps = {
-  from: string;
-  kind: string;
-};
+const isDev = process.env.NODE_ENV !== "production";
 
-type WatchPropsExtended = Partial<WatchProps> & PropsWithChildren<any>
+type ConsoleKind = "log" | "warn" | "error" | "info" | "debug" |"trace" | "table" | "dir" | "dirxml" | "group" | "groupCollapsed" | "groupEnd";
 
-const logStyle = `
-  background-color: crimson;
-  color: whitesmoke;
+const getLogStyle = (background?: string, color?: string) => `
+  background-color: ${background ?? "crimson"};
+  color: ${color ?? "whitesmoke"};
   font-size: larger;
   font-style: italic;
   padding: 0.25rem;
-`
+`;
 
-export const watchThis = (what: any, from = '👇', kind = 'log') => {
-    console.groupCollapsed(`%c === [${from}] ===`, logStyle);
-    (console as any)[kind](what);
-    console.groupEnd();
+export type WatchOptions = {
+  from?: string;
+  kind?: ConsoleKind;
+  level?: number;
+  color?: string;
+  background?: string;
 };
 
-export const Watch: React.FC<WatchPropsExtended> = ({ children, from = '👀', kind = 'log' }) => {
-  watchThis(children, from, kind);
-  return <Fragment>{}</Fragment>;
+export const watchThis = (what: unknown, options: WatchOptions = {}) => {
+  if (!isDev) return;
+  const { from = "👇", kind = "log", level = 1, background, color } = options;
+  const group = level > 1 ? console.group : console.groupCollapsed;
+  const logStyle = getLogStyle(background, color);
+  group(`%c === [${from}] ===`, logStyle);
+  console[kind](what);
+  console.groupEnd();
+};
+
+
+type WatchComponentProps = React.PropsWithChildren<Partial<WatchOptions>>;
+
+export const Watch = ({
+  children,
+  ...options
+}: WatchComponentProps) => {
+  watchThis(children, { ...options, from: "👀" });
+  return null;
 };

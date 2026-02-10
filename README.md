@@ -40,16 +40,19 @@ use `<Watch>` within JSX/TSX code to see the data in the console, and pass data 
 
 ### props (optional)
 
-| name   | type     | default | description                                                        |
-| ------ | -------- | ------- | ------------------------------------------------------------------ |
-| `from` | `string` | **👀**  | additional information to display in console                       |
-| `kind` | `string` | "log"   | console method such as `table` `dir` `warn` `error` `info` `trace` |
+| name         | type     | default      | description                                                        |
+| ------------ | -------- | ------------ | ------------------------------------------------------------------ |
+| `from`       | `string` | **👀**       | additional information to display in console                       |
+| `kind`       | `string` | "log"        | console method such as `table` `dir` `warn` `error` `info` `trace` |
+| `level`      | `number` | 1            | set level if large dataset to view in collapsed group view         |
+| `color`      | `string` | "whitesmoke" | any valid color if user choice                                     |
+| `background` | `string` | "crimson"    | any valid color if user choice                                     |
 
 ### Example
 
 ```tsx
-import { useState } from 'react';
-import { Watch } from '@xkeshav/watch';
+import { useState } from "react";
+import { Watch } from "@xkeshav/watch";
 
 export const Demo = () => {
   const [date, setDate] = useState<Date>(new Date());
@@ -65,7 +68,7 @@ export const Demo = () => {
       <p>Watch without any props</p> <Watch>{{ date }}</Watch>
       <hr />
       <p>Watch with props</p>
-      <Watch from="Demo Component" kind="dir">
+      <Watch from="Demo Component" kind="dir" color="orange">
         {{ date }}
       </Watch>
     </div>
@@ -104,13 +107,13 @@ watchThis(whatToDebug, "additional details");
 ### Example
 
 ```tsx
-import { watchThis } from '@xkeshav/watch';
+import { watchThis } from "@xkeshav/watch";
 
 export const Demo = () => {
   const today = new Date();
-  const system = { name: 'Windows', version: '11', release: '2023' };
+  const system = { name: "Windows", version: "11", release: "2023" };
   watchThis({ today });
-  watchThis({ system }, 'Label', 'info');
+  watchThis({ system }, "Label", "info");
   return (
     <div>
       <h1>watchThis Demo (see in console)</h1>
@@ -130,7 +133,7 @@ This is another method to see output within the page, appears in a panel with sh
 ### WatchJson Syntax
 
 ```tsx
-<WatchJson data={whatever} what={'some Title'} />
+<WatchJson data={whatever} what={"some Title"} />
 ```
 
 ### Props (optional)

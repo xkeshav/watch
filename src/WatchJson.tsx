@@ -75,6 +75,22 @@ const watchJsonStyle = {
  * @prop String what'; optional, if you want to set heading of the debug block.
  */
 
+const safeStringify = (value: unknown) => {
+  const seen = new WeakSet();
+  return JSON.stringify(
+    value,
+    (_, v) => {
+      if (typeof v === "object" && v !== null) {
+        if (seen.has(v)) return "[Circular]";
+        seen.add(v);
+      }
+      return v;
+    },
+    2,
+  );
+};
+
+
 export const WatchJson: React.FC<WatchJsonProps> = ({ what = "", ...rest }) => {
   const [isHidden, toggleHidden] = useReducer(
     (state: boolean) => !state,
@@ -129,7 +145,7 @@ const DetailBlock = ({ wk, wv }: { wk: string; wv: unknown }) => {
         {wk} <mark style={watchJsonStyle.mark}>{detail.type}</mark>
       </summary>
       <pre style={watchJsonStyle.pre}>
-        {JSON.stringify(detail.data, null, 4)}
+        {safeStringify(detail.data)}
       </pre>
     </details>
   );

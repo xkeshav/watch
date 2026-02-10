@@ -1,6 +1,6 @@
 {
   "name": "@xkeshav/watch",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A debug utility to see data within page or in the console for React",
   "main": "./dist/index.js",
   "repository": {
@@ -8,6 +8,10 @@
     "url": "https://github.com/xkeshav/watch.git"
   },
   "homepage": "https://www.npmjs.com/package/@xkeshav/watch",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -25,8 +29,8 @@
     "version": "npm publish --access=public"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">=18 <20",
+    "react-dom": ">=18 <20"
   },
   "keywords": [
     "watch",
@@ -40,8 +44,11 @@
   "author": "Keshav Mohta<xkeshav@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
+    "@types/node": "^25.2.2",
+    "@types/react": "^18.x",
+    "@types/react-dom": "^18.x",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
   }
