@@ -11,7 +11,9 @@ import React, { Fragment, PropsWithChildren } from 'react';
  * @param {string} from - Optional. Additional details, such as filename or date.
  */
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = typeof process !== "undefined" && process.env?.NODE_ENV !== "production";
+
+
 
 type ConsoleKind = "log" | "warn" | "error" | "info" | "debug" |"trace" | "table" | "dir" | "dirxml" | "group" | "groupCollapsed" | "groupEnd";
 

@@ -18,7 +18,7 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm test
+      - run: npm test --if-present
 
   publish-npm:
     needs: build

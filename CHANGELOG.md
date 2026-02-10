@@ -37,7 +37,8 @@ All notable changes to this project will be documented in this file.
 - First Version
 - README added
 
-## [1.5.0] 2026-02-10
+## [1.5.1] 2026-02-10
 
 - Updated for react >18
 - Added color and background props to Watch component
+- Added test script
