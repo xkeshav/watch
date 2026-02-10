@@ -1,6 +1,6 @@
 {
   "name": "@xkeshav/watch",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A debug utility to see data within page or in the console for React",
   "main": "./dist/index.js",
   "repository": {

@@ -23,6 +23,7 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    environment: npm
 
     steps:
       - uses: actions/checkout@v4
@@ -36,4 +37,4 @@ jobs:
       - run: npm ci
       - run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.publish_token }}
