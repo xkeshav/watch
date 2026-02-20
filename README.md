@@ -138,9 +138,10 @@ This is another method to see output within the page, appears in a panel with sh
 
 ### Props (optional)
 
-| name   | type     | default | description                              |
-| ------ | -------- | ------- | ---------------------------------------- |
-| `what` | `string` | ''      | this will be displayed as title of panel |
+| name   | type      | default | description                                                     |
+| ------ | --------- | ------- | --------------------------------------------------------------- |
+| `what` | `string`  | ''      | this will be displayed as title of panel                        |
+| `drag` | `boolean` | false   | when enabled the a draggable debug panel will be appear on page |
 
 Note: we can pass as many as props to `WatchJson` (of any type )
 
@@ -156,6 +157,10 @@ const WatchDemo = () => {
 ### Output
 
 ![WatchJson Demo](assets/images/watchJson_demo.png)
+
+when set `drag={true}`
+
+![WatchJson with Drag Panel](assets/images/watchJsonDrag_demo.png)
 
 ## License
 

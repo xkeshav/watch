@@ -42,3 +42,7 @@ All notable changes to this project will be documented in this file.
 - Updated for react >18
 - Added color and background props to Watch component
 - Added test script
+
+## [1.5.4] 2026-02-20
+
+- Add `drag` props in watchJson

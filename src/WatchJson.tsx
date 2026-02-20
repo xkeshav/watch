@@ -1,7 +1,10 @@
 import { Fragment, useReducer, useState } from "react";
 
+import { DraggablePanel } from './DraggablePanel';
+
 export type WatchJsonProps = {
   [key: string]: unknown;
+  drag?: boolean;
   what?: string;
 };
 
@@ -48,7 +51,7 @@ const watchJsonStyle = {
     marginLeft: "auto",
     color: "#112d43",
     backgroundColor: "#75f191",
-    width: "4rem",
+    width: "max-content",
   },
   detail: {
     margin: "0.25rem",
@@ -90,15 +93,32 @@ const safeStringify = (value: unknown) => {
   );
 };
 
+const DetailBlock = ({ wk, wv }: { wk: string; wv: unknown }) => {
+  const detail =
+    wv instanceof Map
+      ? { type: "Map", data: Object.fromEntries(wv.entries()) }
+      : wv instanceof Set
+        ? { type: "Set", data: Array.from(wv.values()) }
+        : { type: wv instanceof Array ? "Array" : "Object", data: wv };
+  return (
+    <details style={watchJsonStyle.detail}>
+      <summary style={watchJsonStyle.summary}>
+        {wk} <mark style={watchJsonStyle.mark}>{detail.type}</mark>
+      </summary>
+      <pre style={watchJsonStyle.pre}>{safeStringify(detail.data)}</pre>
+    </details>
+  );
+};
 
-export const WatchJson: React.FC<WatchJsonProps> = ({ what = "", ...rest }) => {
+
+export function WatchJson({ what = "", drag, ...rest }: WatchJsonProps ) { 
   const [isHidden, toggleHidden] = useReducer(
     (state: boolean) => !state,
     false
   );
   const [hover, setHover] = useState(false);
 
-  return (
+  const content = (
     <div
       style={watchJsonStyle.container({ hover })}
       onPointerOver={() => setHover(true)}
@@ -119,9 +139,7 @@ export const WatchJson: React.FC<WatchJsonProps> = ({ what = "", ...rest }) => {
           </div>
           <div style={isHidden ? watchJsonStyle.hide : watchJsonStyle.show}>
             {Object.entries(rest).map(([wk, wv], i) => (
-              <Fragment key={i}>
-                <DetailBlock wk={wk} wv={wv} />
-              </Fragment>
+                <DetailBlock key={i} wk={wk} wv={wv} />
             ))}
           </div>
         </Fragment>
@@ -130,23 +148,10 @@ export const WatchJson: React.FC<WatchJsonProps> = ({ what = "", ...rest }) => {
       )}
     </div>
   );
-};
 
-const DetailBlock = ({ wk, wv }: { wk: string; wv: unknown }) => {
-  const detail =
-    wv instanceof Map
-      ? { type: "Map", data: Object.fromEntries(wv.entries()) }
-      : wv instanceof Set
-      ? { type: "Set", data: Array.from(wv.values())[0] }
-      : { type: wv instanceof Array ? "Array" : "Object", data: wv };
-  return (
-    <details style={watchJsonStyle.detail}>
-      <summary style={watchJsonStyle.summary}>
-        {wk} <mark style={watchJsonStyle.mark}>{detail.type}</mark>
-      </summary>
-      <pre style={watchJsonStyle.pre}>
-        {safeStringify(detail.data)}
-      </pre>
-    </details>
-  );
+  if(drag) {
+    return <DraggablePanel>{content}</DraggablePanel>
+  }
+
+  return content;
 };
